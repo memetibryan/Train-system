@@ -1,7 +1,7 @@
 require("rspec")
   require("pg")
-  require("movie")
-  require('actor')
+  require("train")
+  require('town')
 
   DB = PG.connect({:dbname => "movie_test"})
 
