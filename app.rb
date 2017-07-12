@@ -45,11 +45,11 @@
     erb(:add_success)
   end
 
-  # get("/towns/:id") do
-  #   @town = Town.find(params.fetch("id").to_i())
-  #   @trains = Train.all()
-  #   erb(:town_details)
-  # end
+  get("/towns/:id") do
+    @town = Town.find(params.fetch("id").to_i())
+    @trains = Train.all()
+    erb(:town_details)
+  end
 
   get("/trains/:id") do
     @train = Train.find(params.fetch("id").to_i())
@@ -64,4 +64,13 @@
     @train.update({:town_ids => town_ids})
     @towns = Town.all()
     erb(:train_details)
+  end
+
+  patch("/towns/:id") do
+    town_id = params.fetch("id").to_i()
+    @town = Town.find(town_id)
+    train_ids = params.fetch("train_ids")
+    @town.update({:train_ids => train_ids})
+    @trains = Train.all()
+    erb(:town_details)
   end

@@ -1,6 +1,21 @@
-<h1>Towns and the respective trains that will pass by them</h1>
+<h1>Towns and the respective Trains through them</h1>
 
 <hr>
+
+  <% if @towns.any?() %>
+    <p>Click on a town to see information about it and add trains it will stop:</p>
+
+    <ul>
+      <% @towns.each do |town| %>
+      <li><a href="/towns/<%= town.id() %>"><%= town.name() %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no towns added yet!</p>
+  <% end %>
+
+<hr>
+
 
 <div class=row>
   <div class= "col-md-3">

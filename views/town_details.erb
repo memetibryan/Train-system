@@ -1,0 +1,20 @@
+<h1><%= @town.name() %></h1>
+
+<hr>
+<% if @town.trains().any?() %>
+
+    <h3>Here are all the trains passing <%= @town.name() %>:</h3>
+
+    <ul>
+      <% @town.trains().each() do |town| %>
+        <li><%= town.name() %></li>
+      <% end %>
+    </ul>
+    <a href="/trains"><button class="button btn">Add another Train!</button></a>
+  <% else %>
+    <p>There are no trains through <%= @town.name() %> yet! <a href="/trains"><button class="button btn">Click to add Trains!</button></a>
+  <% end %>
+
+<hr>
+
+  <a href="/"><button class="button btn">Return Home</button></a>
