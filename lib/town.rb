@@ -49,13 +49,13 @@ class Town
     DB.exec("UPDATE towns SET name = '#{@name}' WHERE id = #{self.id()};")
 
     attributes.fetch(:train_ids, []).each() do |train_id|
-      DB.exec("INSERT INTO towns_trains (town_id, train_id) VALUES (#{self.id()}, #{train_id});")
+      DB.exec("INSERT INTO train_towns (town_id, train_id) VALUES (#{self.id()}, #{train_id});")
     end
   end
 
   define_method(:trains) do
     town_trains = []
-    results = DB.exec("SELECT train_id FROM towns_trains WHERE town_id = #{self.id()};")
+    results = DB.exec("SELECT train_id FROM train_towns WHERE town_id = #{self.id()};")
     results.each() do |result|
       train_id = result.fetch("train_id").to_i()
       train = DB.exec("SELECT * FROM trains WHERE id = #{train_id};")

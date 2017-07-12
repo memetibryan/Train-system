@@ -2,13 +2,27 @@
 
 <hr>
 
+  <% if @trains.any?() %>
+    <p>Click on a train to see information about it and add towns it will stop:</p>
+
+    <ul>
+      <% @trains.each do |train| %>
+      <li><a href="/trains/<%= train.id() %>"><%= train.name() %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no trains added yet!</p>
+  <% end %>
+
+<hr>
+
 <div class=row>
   <div class= "col-md-3">
     <a href="/"><button class="button btn">Return Home</button></a>
   </div>
 
   <div class= "col-md-3">
-	<a href="/towns"><button class="button btn">Towns</button></a>
+	<a href="/trains"><button class="button btn">Trains</button></a>
   </div>
 
   <div class= "col-md-3">

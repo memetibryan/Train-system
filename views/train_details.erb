@@ -1,0 +1,38 @@
+<h1><%= @train.name() %></h1>
+
+<hr>
+<% if @train.towns().any?() %>
+
+    <h3>Here are all the towns <%= @train.name() %> will pass through:</h3>
+
+    <ul>
+      <% @train.towns().each() do |town| %>
+        <li><%= town.name() %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no towns yet! <a href="/towns/new"><button class="button btn">Click to add new town</button></a>
+  <% end %>
+
+<hr>
+
+  <h3>Add towns <%= @train.name() %> will pass through:</h3>
+
+  <% if @towns.any?() %>
+    <form action="/trains/<%= @train.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <% @towns.each() do |town| %>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="town_ids[]" value="<%= town.id() %>"><%= town.name() %>
+          </label>
+        </div>
+      <% end %>
+
+      <button type="submit">Add towns</button>
+    </form>
+  <% end %>
+
+  <br>
+
+  <a href="/"><button class="button btn">Return Home</button></a>
