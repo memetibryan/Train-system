@@ -1,0 +1,35 @@
+<h1>Welcome to the Movie Database!</h1>
+  <h2>A place where you can store information about movies and actors.</h2>
+
+  <p><a href="/movies">Add a new movie</a></p>
+  <p><a href="/actors">Add a new actor</a></p>
+
+
+  <h3>Here are all the actors in this database:</h3>
+
+  <% if @actors.any?() %>
+    <p>Click on an actor to see information about them and mark which movies they were in:</p>
+
+    <ul>
+      <% @actors.each do |actor| %>
+        <li><a href="/actors/<%= actor.id() %>"><%= actor.name() %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no actors added yet!</p>
+  <% end %>
+
+
+  <h3>Here are all the movies in this database:</h3>
+
+  <% if @movies.any?() %>
+    <p>Click on a movie to see information about it and mark which actors were in it:</p>
+
+    <ul>
+      <% @movies.each do |movie| %>
+        <li><a href="/movies/<%= movie.id() %>"><%= movie.name() %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There are no movies added yet!</p>
+  <% end %>
